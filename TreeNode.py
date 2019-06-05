@@ -76,11 +76,10 @@ class TreeNode(object):
     def displayGivenTree(self, node, level):
         if node is None:
             return
-        else:
-            self.displayGivenTree(node.left, level+1)
-            self.displayGivenTree(node.right, level+1)
+        self.displayGivenTree(node.left, level+1)
+        self.displayGivenTree(node.right, level+1)
 
-            self.display[level].append(node.data)
+        self.display[level].append(node.data)
 
     def __str__(self):
         self.display = [[] for i in range(self.heightTree())]
@@ -115,6 +114,7 @@ def main():
     print(myTree)
     print(myTree.search(2))
     print(myTree.search(200))
+    print(myTree.search(5))
 
 if __name__ == '__main__':
     main()
