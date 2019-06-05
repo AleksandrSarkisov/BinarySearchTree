@@ -51,6 +51,11 @@ class TreeNode(object):
             return
         return node
 
+    def search(self, data):
+        if self.searchNode(data) is None:
+            return "Node not in Tree"
+        return 'Node in Tree'
+
     def heightGivenTree(self, node):
         if node is None:
             return 0
@@ -108,6 +113,8 @@ def main():
 
     print(myTree.heightTree())
     print(myTree)
-    print(myTree.searchNode(2))
+    print(myTree.search(2))
+    print(myTree.search(200))
+
 if __name__ == '__main__':
     main()
