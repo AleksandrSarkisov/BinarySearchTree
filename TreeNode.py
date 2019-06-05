@@ -5,9 +5,6 @@ class Node(object):
         self.left = left
         self.right = right
 
-    def __str__(self):
-        return 'Node ['+str(self.data)+']'
-
 class TreeNode(object):
     """docstring for TreeNode."""
 
@@ -41,14 +38,18 @@ class TreeNode(object):
                 self.heightTree()
         self.count += 1
 
-
-    def searchNode(self, node):
-        if self.root.data == data:
-            return self.root
-        if self.data > data:
-            self.root.searchNode(data)
-        else:
-            self.root.searchNode(data)
+    def searchNode(self, data):
+        node = self.root
+        while node is not None:
+            if node.data == data:
+                break
+            if node.data > data:
+                node = node.left
+            else:
+                node = node.right
+        if node is None:
+            return
+        return node
 
     def heightGivenTree(self, node):
         if node is None:
@@ -76,10 +77,13 @@ class TreeNode(object):
 
             self.display[level].append(node.data)
 
-    def displayTree(self):
+    def __str__(self):
         self.display = [[] for i in range(self.heightTree())]
         self.displayGivenTree(self.root, 0)
-        return self.display
+        l = []
+        for i in self.display:
+            l.extend(i)
+        return str(l)
 
 def main():
     myTree = TreeNode()
@@ -103,8 +107,7 @@ def main():
     myTree.addNode(18)
 
     print(myTree.heightTree())
-    for i in myTree.displayTree():
-        print(i)
-
+    print(myTree)
+    print(myTree.searchNode(2))
 if __name__ == '__main__':
     main()
